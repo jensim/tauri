@@ -1,0 +1,21 @@
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - 'dev'
+
+jobs:
+  build:
+    name: 'Build Example/API application'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Clone'
+        uses: actions/checkout@v2
+      - name: 'Setup'
+        shell: bash
+        run: 'bash ./.scripts/setup.sh'
+      - name: 'Build Example/API'
+        run: yarn build

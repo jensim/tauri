@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: Apache-2.0
 # SPDX-License-Identifier: MIT
 
+set -ex
+
 echo "Building API definitions..."
 cd tooling/api
 yarn && yarn build
