@@ -16,15 +16,24 @@ cargo install --path .
 cd ../..
 echo "Tauri Rust CLI installed. Run it with '$ cargo tauri [COMMAND]'."
 
-echo "Do you want to install the Node.js CLI?"
-select yn in "Yes" "No"; do
+function installNodeJsCli() {
+  cd tooling/cli.js
+  yarn && yarn build && yarn link
+  cd ../..
+  echo "Tauri Node.js CLI installed. Run it with '$ tauri [COMMAND]'."
+}
+
+if [ -z "$PS1" ]; then
+  installNodeJsCli
+else
+  echo "Do you want to install the Node.js CLI?"
+  select yn in "Yes" "No"; do
     case $yn in
-        Yes )
-            cd tooling/cli.js
-            yarn && yarn build && yarn link
-            cd ../..
-            echo "Tauri Node.js CLI installed. Run it with '$ tauri [COMMAND]'."
-            break;;
-        No ) break;;
+    Yes)
+      installNodeJsCli
+      break
+      ;;
+    No) break ;;
     esac
-done
+  done
+fi

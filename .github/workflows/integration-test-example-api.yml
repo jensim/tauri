@@ -1,8 +1,6 @@
 on:
   workflow_dispatch:
   push:
-    branches:
-      - '**'
   pull_request:
     branches:
       - 'dev'
@@ -18,4 +16,5 @@ jobs:
         shell: bash
         run: 'bash ./.scripts/setup.sh'
       - name: 'Build Example/API'
+        working-directory: ${{ env.working-directory }}/examples/api
         run: yarn build
