@@ -1,3 +1,5 @@
+name: Integation test
+
 on:
   workflow_dispatch:
   push:
@@ -8,13 +10,15 @@ on:
 jobs:
   build:
     name: 'Build Example/API application'
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: 'Clone'
         uses: actions/checkout@v2
+
       - name: 'Setup'
         shell: bash
-        run: 'bash ./.scripts/setup.sh'
+        run: ./.scripts/setup.sh
+
       - name: 'Build Example/API'
         working-directory: ${{ env.working-directory }}/examples/api
         run: yarn build
