@@ -25,4 +25,6 @@ jobs:
 
       - name: 'Build Example/API'
         working-directory: ${{ env.working-directory }}/examples/api
-        run: yarn build
+        run: |
+          yarn
+          yarn run build
